@@ -1,0 +1,145 @@
+
+.virtual-keyboard-overlay {
+	position: fixed;
+	top: 0; bottom: 0;
+	left: 0; right: 0;
+}
+
+.virtual-keyboard {
+	position: absolute;
+	color: #333333;
+	width: 31.4em;
+	padding: 0.8%;
+	background: rgba(255, 255, 255, 0.92);
+	text-align: center;
+	font-size: 1.1em;
+	font-family: arial, sans-serif;
+	border: 1px solid #ccc;
+	border-radius: 6px;
+	box-shadow: 1px 2px 5px 0 rgba(0, 0, 0, 0.1);
+	box-sizing: initial;
+	overflow: hidden;
+	z-index: 1000;
+}
+.virtual-keyboard.is-draggable {
+	padding: calc(1.5em + 0.8%) 0.8% 0.8%;
+}
+
+.virtual-keyboard .virtual-keyboard-title {
+	position: absolute;
+	top: 0; left: 0;
+	width: 100%;
+	background: linear-gradient(to bottom, rgba(255,255,255,1), rgba(0,0,0,0.12));
+	padding: 1px 0;
+	line-height: 1.5em;
+	cursor: move;
+}
+.virtual-keyboard:not(.is-draggable) .virtual-keyboard-title {
+	display: none;
+}
+
+
+.virtual-keyboard .virtual-key {
+	min-width: 2.25em;
+	background: #ffffff;
+	margin: 0.17em;
+	padding: 1px 0.52em;
+	color: #333333;
+	font-weight: normal;
+	font-size: inherit;
+	line-height: 1.5em;
+	text-align: center;
+	border: 1px solid #ccc;
+	border-radius: 6px;
+	box-shadow: 0 1px 2px -1px rgba(0, 0, 0, 0.2);
+
+	transition: color 0.3s linear, background-color 0.3s linear, border-color 0.3s linear;
+	cursor: pointer;
+	outline: none;
+	-webkit-tap-highlight-color: none;
+	-webkit-user-select: none;
+	-moz-user-select: none;
+	-ms-user-select: none;
+	user-select: none;
+}
+
+.virtual-keyboard .virtual-key.was-clicked,
+.virtual-keyboard .virtual-key.is-selected {
+	color: #111;
+	background-color: #c0c0c0;
+	text-shadow: 0 1px 1px rgba(0, 0, 0, 0.2);
+	box-shadow: none;
+	border-color: #aaa;
+	transition: none;
+}
+
+.is-focus-virtual-input {
+	outline: -webkit-focus-ring-color auto 5px;
+}
+
+.is-dragging-virtual-keyboard,
+.is-dragging-virtual-keyboard * {
+	-webkit-tap-highlight-color: none;
+	-webkit-user-select: none;
+	-moz-user-select: none;
+	-ms-user-select: none;
+	user-select: none;
+}
+
+/* Custom Buttons */
+.virtual-keyboard .virtual-key[data-value="placeholder"] {
+	visibility: hidden;
+}
+
+.virtual-keyboard .virtual-key[data-value="tab"],
+.virtual-keyboard .virtual-key[data-value="bksp"] {
+	width: 4.9em;
+}
+
+.virtual-keyboard .virtual-key[data-value="normal"],
+.virtual-keyboard .virtual-key[data-value="meta1"],
+.virtual-keyboard .virtual-key[data-value="meta2"],
+.virtual-keyboard .virtual-key[data-value="cancel"],
+.virtual-keyboard .virtual-key[data-value="done"] {
+	width: 7.5em;
+}
+
+.virtual-keyboard .virtual-key[data-value="shift"] {
+	width: 3.6em;
+}
+
+.virtual-keyboard .virtual-key[data-value="space"] {
+	width: 15.3em;
+}
+
+
+/* Custom Buttons - based on keyboard type for a more perfect fit */
+.virtual-keyboard[data-keyboard-type="email"] .virtual-key[data-value="space"] {
+	width: 6.4em;
+}
+
+.virtual-keyboard[data-keyboard-type="textarea"] .virtual-key[data-value="tab"],
+.virtual-keyboard[data-keyboard-type="textarea"] .virtual-key[data-value="enter"] {
+	width: 3.6em;
+}
+
+.virtual-keyboard[data-keyboard-type="number"],
+.virtual-keyboard[data-keyboard-type="tel"] {
+	width: 11.6em;
+}
+.virtual-keyboard[data-keyboard-type="number"] .virtual-key[data-value="bksp"],
+.virtual-keyboard[data-keyboard-type="tel"] .virtual-key[data-value="bksp"] {
+	width: 3.4em;
+}
+.virtual-keyboard[data-keyboard-type="number"] .virtual-key[data-value="tab"],
+.virtual-keyboard[data-keyboard-type="tel"] .virtual-key[data-value="tab"] {
+	float: right;
+	width: 3.4em;
+	line-height: 2.95em;
+	padding-top: 6px;
+	padding-bottom: 6px;
+}
+.virtual-keyboard[data-keyboard-type="number"] .virtual-key[data-value="accept"],
+.virtual-keyboard[data-keyboard-type="tel"] .virtual-key[data-value="accept"] {
+	width: 5.9em;
+}

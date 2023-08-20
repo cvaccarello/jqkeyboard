@@ -1,0 +1,207 @@
+<!DOCTYPE>
+<html>
+<head>
+	<title>Keyboard Test Page</title>
+	<meta name="viewport" content="user-scalable=no, width=device-width, initial-scale=1, maximum-scale=1">
+
+	<link href="../src/keyboard.css" rel="stylesheet">
+
+	<style>
+		body {
+			/*position: relative;*/
+		}
+
+		label {
+			font-weight: normal;
+			display: block;
+		}
+
+		button {
+			color: blue;
+			background: #ffffff;
+			border: 1px solid blue;
+			margin: 10px;
+			padding: 10px 20px;
+		}
+
+		button.is-active {
+			color: #ffffff;
+			background: blue;
+			border: 1px solid #ffffff;
+		}
+
+		.box {
+			position: relative;
+			top: 0; left: 0;
+			width: 80%;
+			padding: 5px 40px;
+			margin: auto;
+			border: 1px solid #ccc;
+		}
+
+		.box > div {
+			margin: 25px 0;
+		}
+
+		.box input {
+			margin: 5px 0;
+		}
+	</style>
+</head>
+<body>
+
+<form>
+	<div style="position: fixed; top: 70px; right: 10%; width: 200px; text-align: right; z-index: 2;">
+		<div><button class="toggle_dragging is-active">Toggle Dragging</button></div>
+		<div><button class="toggle_fixed">Toggle Fixed Positioning</button></div>
+	</div>
+	<div class="box">
+		<div><span style="color: red;">*</span> = Custom Keyboard Exists</div>
+		<div>
+			<label>Text</label>
+			<input type="text"/>
+		</div>
+		<div>
+			<label><span style="color: red;">*</span> Email</label>
+			<input type="email"/>
+		</div>
+		<div>
+			<label>Password</label>
+			<input type="password"/>
+		</div>
+		<div>
+			<label><span style="color: red;">*</span> Number</label>
+			<input type="number" min="1" max="100" step="10" value="30"/>
+		</div>
+		<div>
+			<label><span style="color: red;">*</span> Telephone Number</label>
+			<input type="tel" name="usrtel"/>
+		</div>
+		<div>
+			<label>Search</label>
+			<input type="search" name="googlesearch"/>
+		</div>
+		<div>
+			<label>URL</label>
+			<input type="url" name="homepage"/>
+		</div>
+		<div>
+			<label for="textarea1"><span style="color: red;">*</span> Textarea</label>
+			<textarea id="textarea1"></textarea>
+		</div>
+		<div>
+			<label>Text (Disabled Attribute)</label>
+			<input type="text" disabled/>
+		</div>
+		<div>
+			<label>Email (Class "is-disabled")</label>
+			<input type="email" class="is-disabled"/>
+		</div>
+		<div>
+			<label>Password (Class "disabled")</label>
+			<input type="password" class="disabled"/>
+		</div>
+		<div>
+			<label>Number (Class "no-keyboard")</label>
+			<input type="number" min="1" max="100" step="10" value="30" class="no-keyboard"/>
+		</div>
+		<div>
+			<label>Submit</label>
+			<input type="submit" value="Submit"/>
+		</div>
+		<div>
+			<label>Reset</label>
+			<input type="reset" value="Reset"/>
+		</div>
+		<div>
+			<label>Button</label>
+			<input type="button" value="Do NOT Click Me" onclick="alert('Why would you do that!? \nI said not to click me.');" />
+		</div>
+		<div>
+			<label>Radio</label>
+			<input type="radio" value="male"/> Male
+			<input type="radio" value="female"/> Female
+		</div>
+		<div>
+			<label>Checkbox</label>
+			<input type="checkbox" value="apples"/> Apples
+			<input type="checkbox" value="oranges"/> Oranges
+		</div>
+		<div>
+			<label>Date</label>
+			<input type="date" name="bday"/>
+		</div>
+		<div>
+			<label>Color</label>
+			<input type="color" name="favcolor"/>
+		</div>
+		<div>
+			<label>Range</label>
+			<input type="range" name="points" min="0" max="10"/>
+		</div>
+		<div>
+			<label>Month</label>
+			<input type="month" name="bdaymonth"/>
+		</div>
+		<div>
+			<label>Week</label>
+			<input type="week" name="week_year"/>
+		</div>
+		<div>
+			<label>Time</label>
+			<input type="time" name="usr_time"/>
+		</div>
+		<div>
+			<label>DateTime Local</label>
+			<input type="datetime-local" name="bdaytime"/>
+		</div>
+	</div>
+</form>
+
+<!-- Standard Packages -->
+<script src="https://code.jquery.com/jquery-3.7.0.min.js" integrity="sha256-2Pmvv0kuTBOenSvLm6bvfBSSHrUJ+3A7x6P5Ebd07/g=" crossorigin="anonymous"></script>
+<script src="../dist/keyboard.min.js"></script>
+
+
+<!-- Page-Specific JS -->
+<script type="text/javascript">
+	$(document).ready(function() {
+		var dragging = true;
+		var fixed = false;
+
+		$('.toggle_dragging').on('click', function(e) {
+			e.preventDefault();
+			$(this).toggleClass('is-active');
+			dragging = !dragging;
+
+			VirtualKeyboard.reconfigure({
+				draggable: dragging
+			});
+		});
+
+		$('.toggle_fixed').on('click', function(e) {
+			e.preventDefault();
+			$(this).toggleClass('is-active');
+			fixed = !fixed;
+
+			if (fixed) {
+				VirtualKeyboard.reconfigure({
+					fixed_position: {
+						top: 250,
+						left: 400
+					}
+				});
+			} else {
+				VirtualKeyboard.reconfigure({
+					fixed_position: {
+						top: undefined,
+						left: undefined
+					}
+				});
+			}
+		});
+	});
+</script>
+
+</body>
+</html>
